@@ -1,3 +1,12 @@
+a {
+  text-decoration: none;
+  color: #000000;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
 .container {
     position: absolute;
     width: 100%;
@@ -5,28 +14,39 @@
     border: 0;
 }
 
-.spacer {
-  flex: 1 1 auto;
+.menu {
+  border-bottom: #cacaca solid 1px;
+  padding: 10px 0 10px 0;
 }
 
-.menu a {
-  font-weight: normal;
-  font-style: normal;
-  color: #000000;
-  vertical-align: middle;
+.menu a:hover {
+  color: #cacaca;
 }
 
 .menu-item {
-  height: 100%;
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
+  margin: 0 10px 0 10px;
 }
 
 .menu-item mat-icon {
   padding-right: 10px;
 }
+
+.menu-active {
+  color: #673ab7;
+}
+
+.submenu {
+  flex-basis: 100%;
+  height: inherit;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.submenu .mat-icon{
+  font-size: 18px;
+  padding: 1px;
+}
+
 
 .sidenav-content {
   display: flex;
@@ -34,4 +54,3 @@
   align-items: center;
   justify-content: center;
 }
-

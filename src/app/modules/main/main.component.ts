@@ -14,14 +14,14 @@ export class MainComponent implements OnInit {
       itens: [],
     },
     {
-      router: '/main/user-list',
-      title: 'Usuários',
+      router: '/main/test',
+      title: 'Teste',
       icon: 'account_circle',
       itens: [],
-    },
+    }
   ];
 
-  isMenuOpened = false;
+  isMenuOpened = true;
 
   constructor() { }
 

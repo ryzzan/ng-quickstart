@@ -1,32 +1,54 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button class="icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
-        <mat-icon>menu</mat-icon>
-    </button>
-    <span>AppName</span>
-    <span class="spacer"></span>
-    <button mat-icon-button class="icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-    </button>
+  <button mat-icon-button class="icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>My Quickstart</span>
+  <span class="spacer"></span>
+  <button mat-icon-button class="icon" aria-label="Perfil" [matMenuTriggerFor]="profileMenu">
+    <mat-icon>account_circle</mat-icon>
+  </button>
 </mat-toolbar>
 
+<mat-menu #profileMenu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>person</mat-icon>
+    <span>Alterar dados pessoais</span>
+  </button>
+  <button mat-menu-item>
+    <mat-icon>lock</mat-icon>
+    <span>Alterar senha</span>
+  </button>
+  <button mat-menu-item [routerLink]="['/']" routerLinkActive="router-link-active">
+    <mat-icon>logout</mat-icon>
+    <span>Sair</span>
+  </button>
+</mat-menu>
+
 <mat-drawer-container class="container">
-    <mat-drawer #drawer class="sidenav" mode="side">
-        <mat-list>
-            <mat-list-item class="menu" *ngFor="let item of menu">
-                <a [routerLink]="item.router" class="menu-item">
-                    <div class="menu-item">
-                        <mat-icon>{{item.icon}}</mat-icon>
-                    </div>
-                    <div class="menu-item">
-                        {{item.title}}
-                    </div>
-                </a>
-                <mat-divider></mat-divider>
-            </mat-list-item>
-        </mat-list>
-    </mat-drawer>
-    <router-outlet></router-outlet>
+  <mat-drawer #drawer class="sidenav" mode="side">
+    <div class="menu" *ngFor="let item of menu">
+      <a [routerLink]="item.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
+        <div>
+          <mat-icon>{{item.icon}}</mat-icon>
+        </div>
+        <div>
+          {{item.title}}
+        </div>
+      </a>
+      <div *ngIf="item.itens.length > 0" class="submenu">
+        {{item.itens.length > 0}}
+        <div *ngFor="let i of item.itens">
+          <!-- <a [routerLink]="i.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
+                          <div>
+                              <mat-icon>{{i.icon}}</mat-icon>
+                          </div>
+                          <div>
+                              {{i.title}}
+                          </div>
+                      </a> -->
+        </div>
+      </div>
+    </div>
+  </mat-drawer>
+  <router-outlet></router-outlet>
 </mat-drawer-container>

@@ -1,13 +1,27 @@
-<div>
-    <form id="login" [formGroup]="loginForm" (ngSubmit)="loginSubmit()">
+<mat-card class="centralized">
+  <mat-card-header>
+    <div mat-card-avatar class="header-image"></div>
+    <mat-card-title>Login</mat-card-title>
+    <mat-card-subtitle>Autenticação de usuário.</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <form id="login" [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="flex-column">
       <mat-form-field>
         <mat-label>Usuário</mat-label>
-        <input matInput type="text" formControlName="user" id="user" placeholder="Sua identidade, nome de usuário ou e-mail" required ngModel autocomplete="new-password">
+        <input matInput type="text" formControlName="user" id="user"
+          placeholder="Sua identidade, nome de usuário ou e-mail" required ngModel autocomplete="new-password">
       </mat-form-field>
       <mat-form-field>
         <mat-label>Senha</mat-label>
-        <input matInput type="password" formControlName="password" id="password" placeholder="Digite sua senha" required ngModel autocomplete="new-password">
+        <input matInput type="password" formControlName="password" id="password" placeholder="Digite sua senha" required
+          ngModel autocomplete="new-password">
       </mat-form-field>
-      <button mat-raised-button color="primary">Entrar</button>
+      <button mat-raised-button color="primary" [routerLink]="['/main']"
+        routerLinkActive="router-link-active">ENTRAR</button>
     </form>
-</div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [routerLink]="['/recover-password']" routerLinkActive="router-link-active">Esqueci minha
+      senha</button>
+  </mat-card-actions>
+</mat-card>
