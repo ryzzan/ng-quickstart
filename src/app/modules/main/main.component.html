@@ -9,8 +9,40 @@
   </button>
 </mat-toolbar>
 
+<mat-drawer-container class="container">
+    <mat-drawer #drawer class="sidenav-content" mode="side">
+      <div class="menu" *ngFor="let item of menu">
+        <a [routerLink]="item.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
+          <div>
+            <mat-icon>{{item.icon}}</mat-icon>
+          </div>
+          <div>
+            {{item.title}}
+          </div>
+        </a>
+        <div *ngIf="item.itens.length > 0" class="submenu">
+          {{item.itens.length > 0}}
+          <div *ngFor="let i of item.itens">
+            <!-- <a [routerLink]="i.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
+                          <div>
+                              <mat-icon>{{i.icon}}</mat-icon>
+                          </div>
+                          <div>
+                              {{i.title}}
+                          </div>
+                      </a> -->
+          </div>
+        </div>
+      </div>
+    </mat-drawer>
+
+  <div class="container-content">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>
+
 <mat-menu #profileMenu="matMenu">
-  <button mat-menu-item>
+  <button mat-menu-item [routerLink]="['/main/profile']">
     <mat-icon>person</mat-icon>
     <span>Alterar dados pessoais</span>
   </button>
@@ -23,32 +55,3 @@
     <span>Sair</span>
   </button>
 </mat-menu>
-
-<mat-drawer-container class="container">
-  <mat-drawer #drawer class="sidenav" mode="side">
-    <div class="menu" *ngFor="let item of menu">
-      <a [routerLink]="item.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
-        <div>
-          <mat-icon>{{item.icon}}</mat-icon>
-        </div>
-        <div>
-          {{item.title}}
-        </div>
-      </a>
-      <div *ngIf="item.itens.length > 0" class="submenu">
-        {{item.itens.length > 0}}
-        <div *ngFor="let i of item.itens">
-          <!-- <a [routerLink]="i.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
-                          <div>
-                              <mat-icon>{{i.icon}}</mat-icon>
-                          </div>
-                          <div>
-                              {{i.title}}
-                          </div>
-                      </a> -->
-        </div>
-      </div>
-    </div>
-  </mat-drawer>
-  <router-outlet></router-outlet>
-</mat-drawer-container>

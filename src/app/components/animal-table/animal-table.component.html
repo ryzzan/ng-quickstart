@@ -1,0 +1,31 @@
+<mat-card>
+  <mat-card-title>Minha tabela de animais</mat-card-title>
+  <mat-card-subtitle>Dados dos meus animais de estimação</mat-card-subtitle>
+  <table mat-table [dataSource]="animalTableDataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="species">
+      <th mat-header-cell *matHeaderCellDef> Espécie </th>
+      <td mat-cell *matCellDef="let element"> {{element.species}} </td>
+    </ng-container>
+    <ng-container matColumnDef="phone">
+      <th mat-header-cell *matHeaderCellDef> Contato </th>
+      <td mat-cell *matCellDef="let element"> {{element.phone}} </td>
+    </ng-container>
+    <ng-container matColumnDef="undefined">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let element"> <button mat-icon-button class="icon" aria-label="AnimalTable"
+          [matMenuTriggerFor]="animalTableMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button> </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="animalTableDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: animalTableDisplayedColumns;"></tr>
+  </table>
+</mat-card>
+<mat-menu #animalTableMenu="matMenu"><button mat-menu-item
+    [routerLink]="['/main/test/123']"><span>Editar</span></button><button mat-menu-item
+    (click)="animalTableOpenDialog()"><span>Remover</span></button><button
+    mat-menu-item><span>Bloquear</span></button><button mat-menu-item><span>Desbloquear</span></button></mat-menu>

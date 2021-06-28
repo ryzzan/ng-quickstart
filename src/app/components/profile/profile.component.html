@@ -1,0 +1,128 @@
+<mat-card>
+  <mat-card-content>
+    <mat-tab-group>
+      <mat-tab label="Dados pessoais" id="tab-personal">
+        <form id="profile" [formGroup]="profileForm" (ngSubmit)="profileSubmit()">
+          <mat-form-field>
+            <mat-label>CPF</mat-label><input matInput type="text" formControlName="uniqueId" id="uniqueId"
+              placeholder="Apenas números" required autocomplete="new-password">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Nome</mat-label><input matInput type="text" formControlName="name" id="name"
+              placeholder="Nome completo" required autocomplete="new-password">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Nascimento</mat-label><input matInput type="date" formControlName="birthday" id="birthday"
+              placeholder="Nome completo" required autocomplete="new-password">
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Gênero</mat-label>
+            <mat-select formControlName="gender">
+              <mat-option *ngFor="let genderItem of genderSelectObject" [value]="genderItem.value">
+                {{genderItem.valueView}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </form>
+      </mat-tab>
+      <mat-tab label="Contatos" id="tab-contact">
+        <form id="profile" [formGroup]="profileForm" (ngSubmit)="profileSubmit()">
+          <ng-container formArrayName="contacts">
+            <mat-card *ngFor="let _ of contacts.controls; index as i">
+              <ng-container [formGroupName]="i">
+                <mat-card-header>Contato {{1 + i}}</mat-card-header>
+                <mat-card-content>
+                  <mat-form-field>
+                    <mat-label>Identificador</mat-label><input matInput type="text" formControlName="contactId"
+                      id="contactId" placeholder="Nome identificando o contato" required autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Tipo de contato</mat-label>
+                    <mat-select formControlName="contactType">
+                      <mat-option *ngFor="let contactTypeItem of contactTypeSelectObject"
+                        [value]="contactTypeItem.value">{{contactTypeItem.valueView}}</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Valor</mat-label><input matInput type="text" formControlName="value" id="value"
+                      placeholder="Valor correspondente ao contato" required autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Complemento</mat-label><input matInput type="text" formControlName="contactComplement"
+                      id="contactComplement" placeholder="Informação adicional do contato" required
+                      autocomplete="new-password">
+                  </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions><button mat-button type="button" color="warn" (click)="removeContacts(i)">Remover
+                    contato</button></mat-card-actions>
+              </ng-container>
+            </mat-card>
+          </ng-container>
+          <mat-card>
+            <mat-card-content><button mat-button type="button" (click)=addContacts()>Adicionar contato</button>
+            </mat-card-content>
+          </mat-card>
+        </form>
+      </mat-tab>
+      <mat-tab label="Endereços" id="tab-address">
+        <form id="profile" [formGroup]="profileForm" (ngSubmit)="profileSubmit()">
+          <ng-container formArrayName="addresses">
+            <mat-card *ngFor="let _ of addresses.controls; index as i">
+              <ng-container [formGroupName]="i">
+                <mat-card-header>Endereço {{1 + i}}</mat-card-header>
+                <mat-card-content>
+                  <mat-form-field>
+                    <mat-label>CEP</mat-label><input matInput type="text" formControlName="postalCode" id="postalCode"
+                      placeholder="Código postal do seu endereço" required autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Identificador</mat-label><input matInput type="text" formControlName="addressId"
+                      id="addressId" placeholder="Um apelido para este endereço" required autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Logradouro</mat-label><input matInput type="text" formControlName="address" id="address"
+                      placeholder="Nome da Rua, Avenida, Travessa, etc." required autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Número</mat-label><input matInput type="text" formControlName="number" id="number"
+                      placeholder="Código postal do seu endereço" required autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Bairro</mat-label><input matInput type="text" formControlName="district" id="district"
+                      placeholder="Código postal do seu endereço" required autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Complemento</mat-label><input matInput type="text" formControlName="addressComplement"
+                      id="addressComplement" placeholder="Mais informações que ajudem a achar o seu endereço"
+                      autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>País</mat-label><input matInput type="text" formControlName="country" id="country"
+                      placeholder="País em que fica seu endereço" autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Estado</mat-label><input matInput type="text" formControlName="state" id="state"
+                      placeholder="Estado em que fica seu endereço" autocomplete="new-password">
+                  </mat-form-field>
+                  <mat-form-field>
+                    <mat-label>Cidade</mat-label><input matInput type="text" formControlName="city" id="city"
+                      placeholder="Município em que fica seu endereço" autocomplete="new-password">
+                  </mat-form-field>
+                </mat-card-content>
+                <mat-card-actions><button mat-button type="button" color="warn" (click)="removeAddresses(i)">Remover
+                    endereço</button></mat-card-actions>
+              </ng-container>
+            </mat-card>
+          </ng-container>
+          <mat-card>
+            <mat-card-content><button mat-button type="button" (click)=addAddresses()>Adicionar endereço</button>
+            </mat-card-content>
+          </mat-card>
+        </form>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card-content>
+  <mat-card-actions>
+    <form id="profile" [formGroup]="profileForm" (ngSubmit)="profileSubmit()"><button mat-raised-button
+        color="primary">CRIAR</button></form>
+  </mat-card-actions>
+</mat-card>
