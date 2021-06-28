@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 /** Components */
 import { AnimalFormComponent } from 'src/app/components/animal-form/animal-form.component';
 import { AnimalTableComponent } from 'src/app/components/animal-table/animal-table.component';
+import { FormComponent } from 'src/app/components/form/form.component';
 import { MainComponent } from './main.component';
 import { MvpTestComponent } from 'src/app/components/mvp-test/mvp-test.component';
 import { ProfileComponent } from 'src/app/components/profile/profile.component';
@@ -16,6 +17,7 @@ import { ProfileComponent } from 'src/app/components/profile/profile.component';
   declarations: [
     AnimalFormComponent,
     AnimalTableComponent,
+    FormComponent,
     MainComponent,
     MvpTestComponent,
     ProfileComponent,

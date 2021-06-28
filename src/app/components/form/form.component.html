@@ -1,0 +1,17 @@
+<form [formGroup]="formGeneric">
+  <mat-card>
+    <mat-card-header *ngIf="formObject.title || formObject.subtitle">
+      <mat-card-title *ngIf="formObject.title">{{formObject.title}}</mat-card-title>
+      <mat-card-subtitle *ngIf="formObject.subtitle">{{formObject.subtitle}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content *ngFor="let element of formObject.elements">
+      <mat-form-field appearance="fill" *ngIf="element.input">
+        <mat-label>{{element.input.label}}</mat-label>
+        <input matInput [type]="element.input.type" [formControlName]="element.input.name" [placeholder]="element.input.placeholder" autocomplete="new-password">
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>Ok</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
