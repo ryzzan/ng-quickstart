@@ -24,12 +24,14 @@ import {
 export class FormComponent implements OnInit {
   @Input() formObject: FormInterface = {
     id: 'formGeneric',
-    elements: [{}]
+    elements: [{}],
+    actions: [{}]
   };
   
-  constructor(private formGenericBuilder: FormBuilder, private formGenericActivatedRoute: ActivatedRoute, private formGenericRouter: Router) {
-    
-  }
+  formHeader: boolean = false;
+  formActions: boolean = false;
+
+  constructor(private formGenericBuilder: FormBuilder, private formGenericActivatedRoute: ActivatedRoute, private formGenericRouter: Router) {}
 
   ngOnInit () {
     this.setForm(this.formObject);
@@ -38,9 +40,11 @@ export class FormComponent implements OnInit {
   formGeneric = this.formGenericBuilder.group({});
 
   setForm = (formObject: FormInterface) => {
+    if (formObject.title || formObject.subtitle) this.formHeader = true;
     formObject.elements.forEach(
       (element: FormElementInterface) => {        
         if (element.input) this.formGeneric.addControl(element.input.name, this.formGenericBuilder.control(element.input.value ? `'${element.input.value}'` : null));
+        if (element.select) this.formGeneric.addControl(element.select.name, this.formGenericBuilder.control(/** element.select.value ? `'${element.select.value}'` :*/ null));
         // if (element.input?.validators) {
         //   element.input.validators.forEach(el => {
         //     this.formGeneric.controls[`"${element.input?.name}"`].setValidators(Validators[`'${el}'`]);

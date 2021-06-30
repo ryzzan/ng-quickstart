@@ -2,7 +2,7 @@
   <button mat-icon-button class="icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>My Quickstart</span>
+  <span>DaxTv</span>
   <span class="spacer"></span>
   <button mat-icon-button class="icon" aria-label="Perfil" [matMenuTriggerFor]="profileMenu">
     <mat-icon>account_circle</mat-icon>
@@ -10,20 +10,20 @@
 </mat-toolbar>
 
 <mat-drawer-container class="container">
-    <mat-drawer #drawer class="sidenav-content" mode="side">
-      <div class="menu" *ngFor="let item of menu">
-        <a [routerLink]="item.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
-          <div>
-            <mat-icon>{{item.icon}}</mat-icon>
-          </div>
-          <div>
-            {{item.title}}
-          </div>
-        </a>
-        <div *ngIf="item.itens.length > 0" class="submenu">
-          {{item.itens.length > 0}}
-          <div *ngFor="let i of item.itens">
-            <!-- <a [routerLink]="i.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
+  <mat-drawer #drawer class="sidenav-content" mode="side">
+    <div class="menu" *ngFor="let item of menu">
+      <a [routerLink]="item.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
+        <div>
+          <mat-icon>{{item.icon}}</mat-icon>
+        </div>
+        <div>
+          {{item.title}}
+        </div>
+      </a>
+      <div *ngIf="item.itens.length > 0" class="submenu">
+        {{item.itens.length > 0}}
+        <div *ngFor="let i of item.itens">
+          <!-- <a [routerLink]="i.router" [routerLinkActive]="['menu-active']" class="flex-row menu-item">
                           <div>
                               <mat-icon>{{i.icon}}</mat-icon>
                           </div>
@@ -31,10 +31,10 @@
                               {{i.title}}
                           </div>
                       </a> -->
-          </div>
         </div>
       </div>
-    </mat-drawer>
+    </div>
+  </mat-drawer>
 
   <div class="container-content">
     <router-outlet></router-outlet>
@@ -42,15 +42,17 @@
 </mat-drawer-container>
 
 <mat-menu #profileMenu="matMenu">
-  <button mat-menu-item [routerLink]="['/main/profile']">
+  <!-- <button mat-menu-item [routerLink]="['/main/profile']">
     <mat-icon>person</mat-icon>
     <span>Alterar dados pessoais</span>
-  </button>
-  <button mat-menu-item>
+  </button> -->
+  <button mat-menu-item [routerLink]="['/main/change-password']">
     <mat-icon>lock</mat-icon>
     <span>Alterar senha</span>
   </button>
-  <button mat-menu-item [routerLink]="['/']" routerLinkActive="router-link-active">
+
+  <!-- <button mat-menu-item [routerLink]="['/']" routerLinkActive="router-link-active"> -->
+  <button mat-menu-item (click)="logoutOpenDialog()">
     <mat-icon>logout</mat-icon>
     <span>Sair</span>
   </button>

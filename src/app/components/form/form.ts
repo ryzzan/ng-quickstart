@@ -1,6 +1,7 @@
 export interface FormInterface {
     id: string;
     elements: Array<FormElementInterface>;
+    actions: Array<FormElementInterface>;
     title?: string;
     subtitle?: string;
     attributes?: FormAttributeEnum;
@@ -92,11 +93,16 @@ export interface LegendInterface {
 }
 
 export interface OptgroupInterface {
-    
+    label: string;
+    options?: Array<OptionInterface>;
+    isDisabled?: boolean;
 }
 
 export interface OptionInterface {
-    
+    label: string;
+    value: string;
+    isDisabled?: boolean;
+    isSelected?: boolean;
 }
 
 export interface OutputInterface {
@@ -104,7 +110,15 @@ export interface OutputInterface {
 }
 
 export interface SelectInterface {
-    
+    name: string;
+    label: string;
+    options?: Array<OptionInterface>;
+    optgroups?: Array<OptgroupInterface>;
+    size?: number;
+    isAutofocus?: boolean;
+    isDisabled?: boolean;
+    isMultiple?: boolean;
+    isRequired?: boolean;
 }
 
 export interface TextareaInterface {

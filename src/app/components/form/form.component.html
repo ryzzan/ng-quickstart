@@ -1,17 +1,50 @@
 <form [formGroup]="formGeneric">
   <mat-card>
-    <mat-card-header *ngIf="formObject.title || formObject.subtitle">
+    <mat-card-header *ngIf="formHeader">
       <mat-card-title *ngIf="formObject.title">{{formObject.title}}</mat-card-title>
+      
       <mat-card-subtitle *ngIf="formObject.subtitle">{{formObject.subtitle}}</mat-card-subtitle>
     </mat-card-header>
+    
     <mat-card-content *ngFor="let element of formObject.elements">
-      <mat-form-field appearance="fill" *ngIf="element.input">
+      <!--INPUT-->
+      <mat-form-field *ngIf="element.input">
         <mat-label>{{element.input.label}}</mat-label>
+        
         <input matInput [type]="element.input.type" [formControlName]="element.input.name" [placeholder]="element.input.placeholder" autocomplete="new-password">
       </mat-form-field>
+
+      <!--SELECT: WITHOUT OPTGROUP-->
+      <mat-form-field *ngIf="element.select && !element.select.optgroups">
+        <mat-label>{{element.select.label}}</mat-label>
+        <mat-select [formControlName]="element.select.name" [multiple]="element.select.isMultiple">
+          <mat-option *ngIf="!element.select.isMultiple"></mat-option>
+          <mat-option *ngFor="let option of element.select.options" [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!--SELECT: WITH OPTGROUP-->
+      <mat-form-field *ngIf="element.select && element.select.optgroups">
+        <mat-label>{{element.select?.label}}</mat-label>
+        <mat-select [formControlName]="element.select.name" [multiple]="element.select.isMultiple">
+          <mat-option></mat-option>
+          <mat-optgroup *ngFor="let group of element.select?.optgroups" [label]="group.label" [disabled]="group.isDisabled">
+            <mat-option *ngFor="let option of group.options" [value]="option.value">
+              {{option.label}}
+            </mat-option>
+          </mat-optgroup>
+        </mat-select>
+      </mat-form-field>
+
+      <!--BUTTON-->
+      <button mat-raised-button *ngIf="element.button && (element.button.type === 'submit' || element.button.type === 'reset')" color="primary">{{element.button.label}}</button>
     </mat-card-content>
-    <mat-card-actions>
-      <button mat-button>Ok</button>
+
+    <mat-card-actions *ngFor="let action of formObject.actions">
+      <button mat-raised-button *ngIf="action.button && action.button.type === 'submit'" color="primary">{{action.button.label}}</button>
+      <button mat-raised-button *ngIf="action.button && (action.button.type === 'button' || action.button.type === 'reset')">{{action.button.label}}</button>
     </mat-card-actions>
   </mat-card>
 </form>
