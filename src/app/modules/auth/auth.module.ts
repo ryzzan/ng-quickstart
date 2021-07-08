@@ -16,7 +16,7 @@ import { RecoverPasswordComponent } from '../../components/recover-password/reco
     AuthComponent,
     LoginComponent,
     RecoverPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
   ],
   imports: [
     SharedModule,

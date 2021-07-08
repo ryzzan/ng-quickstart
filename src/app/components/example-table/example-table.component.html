@@ -1,0 +1,28 @@
+<mat-card>
+  <table mat-table [dataSource]="exampleTableDataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Nome </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+    <ng-container matColumnDef="birthday">
+      <th mat-header-cell *matHeaderCellDef> Nascimento </th>
+      <td mat-cell *matCellDef="let element"> {{element.birthday}} </td>
+    </ng-container>
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef> Gênero </th>
+      <td mat-cell *matCellDef="let element"> {{element.gender}} </td>
+    </ng-container>
+    <ng-container matColumnDef="undefined">
+      <th mat-header-cell *matHeaderCellDef> Ações </th>
+      <td mat-cell *matCellDef="let element"> <button mat-icon-button class="icon" aria-label="ExampleTable"
+          [matMenuTriggerFor]="exampleTableMenu">
+          <mat-icon>more_vert</mat-icon>
+        </button> </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="exampleTableDisplayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: exampleTableDisplayedColumns;"></tr>
+  </table>
+</mat-card>
+<mat-menu #exampleTableMenu="matMenu"><button mat-menu-item
+    [routerLink]="['/main/test/123']"><span>Editar</span></button><button mat-menu-item
+    (click)="removeConfirmationDialogOpenDialog()"><span>Remover</span></button></mat-menu>

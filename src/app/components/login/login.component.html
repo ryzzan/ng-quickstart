@@ -8,16 +8,15 @@
     <form id="login" [formGroup]="loginForm" (ngSubmit)="loginSubmit()" class="flex-column">
       <mat-form-field>
         <mat-label>Usuário</mat-label>
-        <input matInput type="text" formControlName="user" id="user"
-          placeholder="Sua identidade, nome de usuário ou e-mail" required ngModel autocomplete="new-password">
+        <input matInput type="text" formControlName="user" id="user" placeholder="Sua identidade, nome de usuário ou e-mail" required autocomplete="new-password">
+        <mat-error>texto</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Senha</mat-label>
         <input matInput type="password" formControlName="password" id="password" placeholder="Digite sua senha" required
-          ngModel autocomplete="new-password">
+          autocomplete="new-password">
       </mat-form-field>
-      <button mat-raised-button color="primary" [routerLink]="['/main']"
-        routerLinkActive="router-link-active">ENTRAR</button>
+      <button mat-raised-button color="primary" [routerLink]="['/main']" routerLinkActive="router-link-active">ENTRAR</button>
     </form>
   </mat-card-content>
   <mat-card-actions>

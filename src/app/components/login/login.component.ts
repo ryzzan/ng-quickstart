@@ -2,8 +2,7 @@ import {
   Component
 } from '@angular/core';
 import {
-  FormControl,
-  FormGroup,
+  FormBuilder,
   Validators
 } from '@angular/forms';
 @Component({
@@ -11,12 +10,13 @@ import {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 }) export class LoginComponent {
-  constructor () {}
+  constructor (private loginFormBuilder: FormBuilder) {}
 
-  loginForm = new FormGroup({
-    'user': new FormControl(null, [Validators.required]),
-    'password': new FormControl(null, [Validators.required]),
+  loginForm = this.loginFormBuilder.group({
+    'user': [null, [Validators.required]],
+    'password': [null, [Validators.required]],
   });
+
 
   loginSubmit = () => {
   }

@@ -16,6 +16,7 @@ import {
   templateUrl: './animal-form.component.html',
   styleUrls: ['./animal-form.component.css']
 }) export class AnimalFormComponent {
+  qualquer = true;
   id: string = this.animalFormRoute.snapshot.params['id'];
   isAddModule: boolean = !this.id;
   constructor(private animalFormFormBuilder: FormBuilder, private animalFormRoute: ActivatedRoute, private animalFormRouter: Router, ) {
